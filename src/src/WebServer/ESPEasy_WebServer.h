@@ -3,12 +3,7 @@
 
 #include "../WebServer/common.h"
 
-
-#include "../CustomBuild/ESPEasyLimits.h"
 #include "../DataTypes/SettingsType.h"
-#include "../Globals/Plugins.h"
-#include "../Helpers/StringConverter.h"
-
 #include "../WebServer/WebTemplateParser.h"
 
 
@@ -64,7 +59,7 @@ void   writeDefaultCSS(void);
 // FIXME TD-er: replace stream_xxx_json_object* into this code.
 // N.B. handling of numerical values differs (string vs. no string)
 // ********************************************************************************
-
+#ifdef WEBSERVER_NEW_UI
 extern int8_t level;
 extern int8_t lastLevel;
 
@@ -100,6 +95,7 @@ void json_prop(const String& name,
                const String& value);
 
 void json_prop(LabelType::Enum label);
+#endif
 
 // ********************************************************************************
 // Add a task select dropdown list

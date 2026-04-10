@@ -9,7 +9,9 @@
 #  include "../Helpers/StringGenerator_System.h"
 # endif // if FEATURE_MQTT_DISCOVER
 # include "../Helpers/SystemVariables.h"
+#if FEATURE_TASKVALUE_UNIT_OF_MEASURE
 # include "../Helpers/ESPEasy_UnitOfMeasure.h"
+#endif
 
 # ifdef USES_P001
 #  include "../PluginStructs/P001_data_struct.h"
@@ -407,7 +409,7 @@ int Plugin_QueryVType_Weight(uint8_t value_nr) {
 }
 
 String makeHomeAssistantCompliantName(const String& name) {
-  return makeRFCCompliantName(name, '_', '_', 0);
+  return ESPEasy::net::makeRFCCompliantName(name, '_', '_', 0);
 }
 
 #  if FEATURE_MQTT_DEVICECLASS

@@ -21,11 +21,6 @@
 #endif // if FEATURE_HTTP_TLS
 
 
-/*********************************************************************************************\
-   Syslog client
-\*********************************************************************************************/
-void sendSyslog(uint8_t logLevel, const String& message);
-
 
 #if FEATURE_ESPEASY_P2P
 
@@ -85,7 +80,7 @@ uint8_t getTypeForUnit(uint8_t unit);
 /*********************************************************************************************\
    Get nodeTypeString for specific unit
 \*********************************************************************************************/
-const __FlashStringHelper* getTypeStringForUnit(uint8_t unit);
+String getTypeStringForUnit(uint8_t unit);
 
 /*********************************************************************************************\
    Send UDP message to specific unit (unit 255=broadcast)
@@ -234,7 +229,11 @@ int http_authenticate(const String& logIdentifier,
                       const String& pass,
                       const String& host,
                       uint16_t      port,
+                     # if FEATURE_JSON_EVENT
+                      String        uri,
+                     # else // if FEATURE_JSON_EVENT
                       const String& uri,
+                     # endif // if FEATURE_JSON_EVENT
                       const String& HttpMethod,
                       const String& header,
                       const String& postStr,
